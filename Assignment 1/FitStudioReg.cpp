@@ -61,7 +61,68 @@ void modify(List *member)
     string phone;
     cout << "Enter the phone number of the member: ";
     getline(cin, phone);
-    Member::setPhone(phone);
+
+    Member toModify = Member(phone);
+    Member *found = member->search(toModify);
+
+    if (found != NULL)
+    {
+        bool modified = false;
+
+        while (not modified)
+        {
+            char choice;
+            cout << "What would you like to modify?" << endl;
+            cout << "1. Name" << endl;
+            cout << "2. Email" << endl;
+            cout << "3. Credit Card" << endl;
+            cout << "4. Exit" << endl;
+            cin >> choice;
+            cin.ignore();
+
+            switch (choice)
+            {
+            case '1':
+            {
+                string name;
+                cout << "Enter the new name: ";
+                getline(cin, name);
+                found->setName(name);
+                break;
+            }
+            case '2':
+            {
+                string email;
+                cout << "Enter the new email: ";
+                getline(cin, email);
+                found->setEmail(email);
+                break;
+            }
+            case '3':
+            {
+                string creditCard;
+                cout << "Enter the new credit card: ";
+                getline(cin, creditCard);
+                found->setCreditCard(creditCard);
+                break;
+            }
+            case '4':
+            {
+                modified = true;
+                break;
+            }
+            default:
+            {
+                cout << "Invalid choice." << endl;
+                break;
+            }
+            }
+        }
+    }
+    else
+    {
+        cout << "Member not found." << endl;
+    }
 };
 
 void search(List *member)
@@ -73,8 +134,7 @@ void search(List *member)
     Member toSearch = Member(phone);
     Member *found = member->search(toSearch);
 
-    bool success = member->search(toSearch);
-    if (success == NULL)
+    if (found == NULL)
     {
         cout << "Member does not exist" << endl;
     }
