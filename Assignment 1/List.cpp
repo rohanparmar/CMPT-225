@@ -1,6 +1,6 @@
 /*
  * List.cpp
- * 
+ *
  * Class Description: List data collection ADT.
  * Class Invariant: Data collection with the following characteristics:
  *                   - Each element is unique (no duplicates).
@@ -20,7 +20,7 @@ using namespace std;
 
 // Description: Deallocate all elements in the data structure.
 // Postcondition: elementCount = 0 and elements points to NULL.
-void List::clear() 
+void List::clear()
 {
     delete[] elements;
     elements = NULL;
@@ -29,7 +29,7 @@ void List::clear()
 
 // Description: Default constructor
 // Postcondition: elementCount = 0 and elements points to an array of CAPACITY Member objects.
-List::List() 
+List::List()
 {
     elementCount = 0;
     elements = new Member[CAPACITY];
@@ -37,14 +37,13 @@ List::List()
 
 // Description: Destructor
 // Postcondition: All elements have been deallocated.
-List::~List() 
+List::~List()
 {
     clear();
 }
 
-
 // Description: Returns the total number of elements currently stored in List.
-unsigned int List::getElementCount() const 
+unsigned int List::getElementCount() const
 {
     return elementCount;
 }
@@ -53,13 +52,13 @@ unsigned int List::getElementCount() const
 // Precondition: newElement must not already be in data collection.
 // Postcondition: newElement inserted in its proper place in List
 //                and elementCount has been incremented.
-bool List::insert( Member& newElement ) 
+bool List::insert(const Member &newElement)
 {
-    if (elementCount == CAPACITY) 
+    if (elementCount == CAPACITY)
     {
         return false;
     }
-    else 
+    else
     {
         elements[elementCount] = newElement;
         elementCount++;
@@ -70,17 +69,17 @@ bool List::insert( Member& newElement )
 // Description: Remove an element.
 // Postcondition: toBeRemoved is removed (leaving no gap in the data structure of List)
 //                and elementCount has been decremented.
-bool List::remove( Member& toBeRemoved ) 
+bool List::remove(Member &toBeRemoved)
 {
-    if (elementCount == 0) 
+    if (elementCount == 0)
     {
         return false;
     }
-    else 
+    else
     {
-        for (int i = 0; i < elementCount; i++) 
+        for (int i = 0; i < elementCount; i++)
         {
-            if (elements[i] == toBeRemoved) 
+            if (elements[i] == toBeRemoved)
             {
                 elements[i] = elements[elementCount - 1];
                 elementCount--;
@@ -93,19 +92,20 @@ bool List::remove( Member& toBeRemoved )
 
 // Description: Remove all elements.
 // Postcondition: List is back to the state it was right after being constructed.
-void List::removeAll() 
+void List::removeAll()
 {
     clear();
+    elementCount = 0;
 }
 
 // Description: Search for target element.
 //              Returns a pointer to the element if found,
 //              otherwise, returns NULL.
-Member* List::search( Member& target ) 
+Member *List::search(Member &target)
 {
-    for (int i = 0; i < elementCount; i++) 
+    for (int i = 0; i < elementCount; i++)
     {
-        if (elements[i] == target) 
+        if (elements[i] == target)
         {
             return &elements[i];
         }
@@ -114,11 +114,10 @@ Member* List::search( Member& target )
 }
 
 // Description: Prints all elements stored in List by descending order of search key.
-void List::printList() 
+void List::printList()
 {
-    for (int i = 0; i < elementCount; i++) 
+    for (int i = 0; i < elementCount; i++)
     {
         cout << elements[i] << endl;
     }
 }
-
