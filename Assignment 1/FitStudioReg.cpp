@@ -238,7 +238,8 @@ void print(List *member)
   }
 };
 
-int main() {
+int main()
+{
 
   // Variables declaration
   List *Members = new List();
