@@ -20,7 +20,7 @@ using namespace std;
 
 // Description: Deallocate all elements in the data structure.
 // Postcondition: elementCount = 0 and elements points to NULL.
-void List::clear()
+void List::clear() 
 {
   delete[] elements;
   elements = NULL;
