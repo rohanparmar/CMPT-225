@@ -15,7 +15,10 @@
 
 using namespace std;
 
-
+// Description: validates the phone number
+// Precondition: phone number must be 12 digits, 
+// and must be in the format of XXX-XXX-XXXX
+// Postcondition: returns true if phone number is valid
 bool validatePhone(string phone) 
 {
   if (phone.length() != 12) 
@@ -45,21 +48,29 @@ bool validatePhone(string phone)
   return true;
 }
 
-bool isUnique(List &list, string phone) 
+// Description: checks if the phone number is already in the list
+// Precondition: phone number must be 12 digits, 
+// and must be in the format of XXX-XXX-XXXX and must be unique
+// Postcondition: returns false if phone number is already in the list
+bool isUnique(List *member, string phone) 
 {
-  for (int i = 0; i < list.getElementCount(); i++) 
+  Member toSearch = Member(phone);
+  Member *found = member->search(toSearch);
+
+  if (found == NULL) 
   {
-    if (list[i].getPhone() == phone) 
-    {
-      return false;
-    }
-  }
-  return true;
+    return true;
+  } 
+  else
+  {
+    return false;
+  } 
 }
 
 
 // Add a new member to the list of members
 // Precondition: member is a valid Member object
+// Member must have a unique phone number ie no duplicates
 // Postcondition: member is added to the list of members
 void add(List *member) 
 {
@@ -89,27 +100,32 @@ void add(List *member)
   cin >> creditCard;
   cin.ignore(256, '\n');
 
-  if(!isUnique(*member, phone)) 
+  if(!isUnique(member, phone)) 
   {
     cout << "Member already exists." << endl;
   } 
   else 
   {
     Member newMember(name, phone, email, creditCard);
+
+    bool success = member->insert(newMember);
+
+    if (success) 
+    {
+      cout << "Member added successfully!" << endl;
+    } 
+    else 
+    {
+      cout << "Member could not be added." << endl;
+    }
   }
 
-  bool success = member->insert(newMem);
 
-  if (success) 
-  {
-    cout << "Member added successfully!" << endl;
-  } 
-  else 
-  {
-    cout << "Member could not be added." << endl;
-  }
 };
 
+// Description: removes a member from the list of members
+// Precondition: member is a valid Member object and must be in the list
+// Postcondition: member is removed from the list of members
 void remove(List *member) 
 {
   string phone;
@@ -130,6 +146,9 @@ void remove(List *member)
   }
 };
 
+// Description: modifies the member's information
+// Precondition: member is a valid Member object and must be in the list
+// Postcondition: member's information is modified
 void modify(List *member) 
 {
   string phone;
@@ -200,6 +219,10 @@ void modify(List *member)
   }
 };
 
+// Description: searches for a member in the list of members
+// Precondition: member is a valid Member object and must be in the list
+// Member must have a unique phone number ie no duplicates
+// Postcondition: member is found in the list of members and displayed
 void search(List *member) 
 {
   string phone;
@@ -225,6 +248,9 @@ void search(List *member)
   }
 };
 
+// Description: displays all the members in the list of members
+// Precondition: member is a valid Member object and must be in the list
+// Postcondition: all members are displayed
 void print(List *member) 
 {
   if (member->getElementCount() == 0) 
@@ -286,5 +312,7 @@ int main() {
       cout << "Not sure what you mean! Please, try again!" << endl;
     }
   }
+  Members->removeAll();
+  Members->~List();
   return 0;
 }
