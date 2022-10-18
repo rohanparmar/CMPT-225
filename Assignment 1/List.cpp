@@ -12,112 +12,129 @@
 
 // Worked on by Rohan Parmar, 301420874
 
+#include "List.h"
 #include <iostream>
 #include <string>
-#include "List.h"
 
 using namespace std;
 
 // Description: Deallocate all elements in the data structure.
 // Postcondition: elementCount = 0 and elements points to NULL.
-void List::clear()
+void List::clear() 
 {
-    delete[] elements;
-    elements = NULL;
-    elementCount = 0;
+  delete[] elements;
+  elements = NULL;
+  elementCount = 0;
 }
 
 // Description: Default constructor
-// Postcondition: elementCount = 0 and elements points to an array of CAPACITY Member objects.
-List::List()
-{
-    elementCount = 0;
-    elements = new Member[CAPACITY];
+// Postcondition: elementCount = 0 and elements points to an array of CAPACITY
+// Member objects.
+List::List() {
+  elementCount = 0;
+  elements = new Member[CAPACITY];
 }
 
 // Description: Destructor
 // Postcondition: All elements have been deallocated.
-List::~List()
-{
-    clear();
-}
+List::~List() { clear(); }
 
 // Description: Returns the total number of elements currently stored in List.
-unsigned int List::getElementCount() const
-{
-    return elementCount;
-}
+unsigned int List::getElementCount() const { return elementCount; }
 
 // Description: Insert an element.
 // Precondition: newElement must not already be in data collection.
 // Postcondition: newElement inserted in its proper place in List
 //                and elementCount has been incremented.
-bool List::insert(const Member &newElement)
+bool List::insert(Member &newElement) 
 {
-    if (elementCount == CAPACITY)
+  if (elementCount == CAPACITY) 
+  {
+    return false;
+  } 
+  else 
+  {
+    if (elementCount == 0) 
     {
-        return false;
-    }
-    else
+      elements[0] = newElement;
+      elementCount++;
+      return true;
+    } 
+    else 
     {
+      for (int i = 0; i < elementCount; i++) 
+      {
+        if (newElement < elements[i]) 
+        {
+          for (int j = i; j < elementCount-1; j++) 
+          {
+            elements[j+1] = elements[j];
+          }
+          elements[i] = newElement;
+          elementCount++;
+          return true;
+        }
+      }
         elements[elementCount] = newElement;
         elementCount++;
         return true;
     }
+  }
 }
 
 // Description: Remove an element.
-// Postcondition: toBeRemoved is removed (leaving no gap in the data structure of List)
+// Postcondition: toBeRemoved is removed (leaving no gap in the data structure
+// of List)
 //                and elementCount has been decremented.
-bool List::remove(Member &toBeRemoved)
+bool List::remove(Member &toBeRemoved) 
 {
-    if (elementCount == 0)
+  if (elementCount == 0) 
+  {
+    return false;
+  } 
+  
+  else 
+  {
+    for (int i = 0; i < elementCount; i++) 
     {
-        return false;
-    }
-    else
-    {
-        for (int i = 0; i < elementCount; i++)
+      if (elements[i] == toBeRemoved) 
+      {
+        for (int j = i; j < elementCount - 1; j++) 
         {
-            if (elements[i] == toBeRemoved)
-            {
-                elements[i] = elements[elementCount - 1];
-                elementCount--;
-                return true;
-            }
+          elements[j] = elements[j + 1];
         }
-        return false;
+        elementCount--;
+        return true;
+      }
     }
+    return false;
+  }
 }
 
 // Description: Remove all elements.
-// Postcondition: List is back to the state it was right after being constructed.
-void List::removeAll()
-{
-    clear();
-    elementCount = 0;
+// Postcondition: List is back to the state it was right after being
+// constructed.
+void List::removeAll() {
+  clear();
+  elementCount = 0;
 }
 
 // Description: Search for target element.
 //              Returns a pointer to the element if found,
 //              otherwise, returns NULL.
-Member *List::search(Member &target)
-{
-    for (int i = 0; i < elementCount; i++)
-    {
-        if (elements[i] == target)
-        {
-            return &elements[i];
-        }
+Member *List::search(Member &target) {
+  for (int i = 0; i < elementCount; i++) {
+    if (elements[i] == target) {
+      return &elements[i];
     }
-    return NULL;
+  }
+  return NULL;
 }
 
-// Description: Prints all elements stored in List by descending order of search key.
-void List::printList()
-{
-    for (int i = 0; i < elementCount; i++)
-    {
-        cout << elements[i] << endl;
-    }
+// Description: Prints all elements stored in List by descending order of search
+// key.
+void List::printList() {
+  for (int i = 0; i < elementCount; i++) {
+    cout << elements[i] << endl;
+  }
 }
