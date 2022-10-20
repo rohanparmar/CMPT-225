@@ -1,0 +1,23 @@
+Part 1:
+
+Objectives:
+
+> implementing recursive and iterative methods for a Binary Search Tree (BST) ADT class.
+> using C++ exception handling mechanism.
+> solving a problem going through the steps of the software development process.
+
+Requirements:
+
+Given:
+1) A complete EmptyDataCollectionException class
+2) A complete ElementAlreadyExistsException class
+3) A complete ElementDoesNotExistException class
+4) A complete BSTNode class (BSTNode.h and BSTNode.cpp)
+5) A complete WordPair ADT class (WordPair.h and WordPair.cpp) - which can be used to test your BST class.
+6) A complete makefile
+
+Write full code for:
+1) testDriver.cpp
+2) BST.h and BST.cpp
+
+Add more examples to: dataFile.txt
