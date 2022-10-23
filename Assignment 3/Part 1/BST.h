@@ -32,6 +32,15 @@ private:
    /* Utility methods */
    
    // Feel free to add private methods to this class.
+
+   // Helper method for the destructor
+   // Recursively deletes all nodes in the tree
+   // Postcondition: current is a nullptr
+   void removeNodeRecursively(BSTNode * current);
+
+   // Helper method for the copy constructor
+   // Recursively copies all nodes in the tree
+   void copyConstructorHelper(BSTNode * current);
    
    // Description: Recursive insertion into a binary search tree.
    //              Returns true when "anElement" has been successfully inserted into the 

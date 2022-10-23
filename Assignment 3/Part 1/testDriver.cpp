@@ -58,20 +58,49 @@ int main(int argc, char *argv[]) {
         translationW = aLine;
         WordPair aWordPair(englishW, translationW);
         // insert aWordPair into "testing" using a try/catch block
+         try
+         {
+            testing->insert(aWordPair);
+         }
+         catch (ElementAlreadyExistsException & e)
+         {
+            cout << "ElementAlreadyExistsException: " << e.what() << endl;
+            cout << "The element " << aWordPair.getEnglish() << "and " << aWordPair.getTranslation() << " already exists in the tree." << endl;
+         }
      }
      myfile.close();
 
      // If user entered "Display" at the command line ...
-     if ( ( argc > 1 ) && ( strcmp(argv[1], "Display") == 0) ) {
+     if ( ( argc > 1 ) && ( strcmp(argv[1], "Display") == 0) ) 
+     {
         // ... then display the content of the BST.
+         cout << "Displaying the content of the BST:" << endl;
+         testing->traverseInOrder(display);
      }
      else if (argc == 1) {
         // while user has not entered CTRL+D
-        while ( getline(cin, aWord) ) {   
+        while ( getline(cin, aWord) ) 
+        {   
 
            WordPair aWordPair(aWord);
            // retrieve aWordPair from "testing" using a try/catch block
+             try
+             {
+               translated = testing->retrieve(aWordPair);
+               cout << translated.getTranslation() << endl;
+             }
+             catch (ElementDoesNotExistException & e)
+             {
+               cout << "ElementDoesNotExistException: " << e.what() << endl;
+               cout << "The element " << aWordPair.getEnglish() << " does not exist in the tree." << endl;
+             }
+             catch (EmptyDataCollectionException & e)
+             {
+               cout << "EmptyDataCollectionException: " << e.what() << endl;
+               cout << "The tree is empty." << endl;
+             }
            // print aWordPair
+//           cout <<  << endl;
 
         }
      }
