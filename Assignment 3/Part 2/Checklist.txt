@@ -1,0 +1,88 @@
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+18/10/2022
+
+Part 1:
+
+Objectives:
+
+> implementing recursive and iterative methods for a Binary Search Tree (BST) ADT class.
+> using C++ exception handling mechanism.
+> solving a problem going through the steps of the software development process.
+
+Requirements:
+
+Given:
+1) A complete EmptyDataCollectionException class
+2) A complete ElementAlreadyExistsException class
+3) A complete ElementDoesNotExistException class
+4) A complete BSTNode class (BSTNode.h and BSTNode.cpp)
+5) A complete WordPair ADT class (WordPair.h and WordPair.cpp) - which can be used to test your BST class.
+6) A complete makefile
+
+Write full code for:
+1) testDriver.cpp
+2) BST.h and BST.cpp
+
+Add more examples to: dataFile.txt
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+22/10/2022
+
+Completed Part 1
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+23/10/2022
+
+Part 2:
+
+Objectives:
+
+> Solving a problem going through the steps of the software development process and in doing so,
+> implementing a data collection Dictionary ADT class, an appropriate data collection for the problem we are asked to solve
+
+Requirements:
+
+1) Select the other language into which your Translator will translate English words. You can select a natural language such as 
+Spanish, French, Italian, Mandarin, Japanese, etc... Or you can select a language from other galaxies/planets such as Vulcan, 
+Cardasian (Kardasi), etc... Note that you cannot select the Klingon language since I have already chosen this language and will 
+be using it to illustrate the behaviour of our Translator Application in this part of our Assignment 3.
+
+2) Create an input data file (must be called myDataFile.txt) containing a minimum of 40 pairs of words: an English word and 
+its translation in the other language you have chosen. Follow the format of the test input file (dataFile.txt) provided in 
+Part 1 of this assignment: one pair of words per line and separate the words using a colon ":", i.e., <English word>:<word in the 
+other language>.
+
+3)Download Dictionary.h, open it and read its content. Create its implementation file Dictionary.cpp using all the files you 
+downloaded and completed in Part 1. As you can see, this Dictionary class is implemented using a BST object as its underlying 
+data structure (CDT). This is to say that when we implement the public methods of this Dictionary class, all we shall do is call 
+the public methods of the BST class. This is very similar to the List-based implementation of the Stack class we saw in class and 
+of the Queue class we saw in class and in our Quiz 1. Also, make sure you add appropriate documentation to the methods of the Dictionary 
+class such as description, precondition (if any), etc.
+
+4)Download this complete makefile - It is not the same as the makefile you downloaded for Part 1.
+
+5)Finally, create a Translator Application (must be called Translator.cpp) which must instantiate and use an object of your 
+Dictionary class. Hint: The testDriver.cpp provided in Part 1 can certainly inspire you when you are creating this Translator.cpp.
+
+
+
+Algorithm:
+
+This Translator Application must have the following behaviour:
+
+While not EOF  (typing <CTRL+D> at the command line creates an <EOF> signal)
+  Your Translator Application allows the user to enter one English word at a time (on one line).
+  It reads the English word entered.
+  It gets its translation from the dictionary object and prints it on the computer monitor screen.
+  If the English word is not found, ***Not Found!*** is printed instead.
+
+About the efficiency:
+When you implement the insertion and the retrieval methods, keep in mind that their time efficiency must be O(log2 n). 
+So, how can you guarantee that each BST insertion and retrieval will be done in O(log2 n)? In other words, 
+how can you guarantee that your BST will not degenerate into a linear data structure as you insert elements into it, 
+hence producing the worst case scenario of BST insertion: a time efficiency of O(n)? One way to avoid the BST's worst case 
+scenario is to implement an AVL tree instead of a BST. But since we are not asked to do this, there must be another way? 
+Hint: Remember what was said in class about the impact the data organization has on the structure of a binary search tree.
