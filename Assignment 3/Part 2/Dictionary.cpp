@@ -38,14 +38,30 @@ unsigned int Dictionary::getElementCount() const
 // Time Efficiency: O(log n)
 void Dictionary::put(WordPair &newElement)
 {
-    if (get(newElement) == newElement)
-    {
-        throw ElementAlreadyExistsException("Dictionary::insertElement()");
-    }
-    else
+    if (getElementCount() == 0)
     {
         keyValuePairs->insert(newElement);
     }
+    else
+    {
+        try
+        {
+            get(newElement);
+        }
+        catch (ElementDoesNotExistException &e)
+        {
+            keyValuePairs->insert(newElement);
+        }
+    }
+    // if (get(newElement).getEnglish() == newElement.getEnglish())
+    // {
+    //     throw ElementAlreadyExistsException("Element already exists in the dictionary.");
+    // }
+    // else
+    // {
+    //     keyValuePairs->insert(newElement);
+    // }
+    //}
 }
 
 // Description: Gets "newElement" (i.e., the associated value of a given key) from the Dictionary.
@@ -55,7 +71,7 @@ void Dictionary::put(WordPair &newElement)
 // Time Efficiency: O(log n)
 WordPair &Dictionary::get(WordPair &targetElement) const
 {
-    if (keyValuePairs->getElementCount() == 0)
+    if (getElementCount() == 0)
     {
         throw EmptyDataCollectionException("Dictionary is empty");
     }
@@ -69,7 +85,7 @@ WordPair &Dictionary::get(WordPair &targetElement) const
 // Time Efficiency: O(n)
 void Dictionary::displayContent(void visit(WordPair &)) const
 {
-    if (keyValuePairs->getElementCount() == 0)
+    if (getElementCount() == 0)
     {
         throw EmptyDataCollectionException("Dictionary is empty");
     }

@@ -21,6 +21,7 @@
 #include "ElementAlreadyExistsException.h"
 #include "ElementDoesNotExistException.h"
 #include "EmptyDataCollectionException.h"
+#include "Dictionary.h"
 
 using std::cin;
 using std::cout;
@@ -37,7 +38,7 @@ void display(WordPair &anElement)
 int main(int argc, char *argv[])
 {
 
-    BST *testing = new BST();
+    Dictionary *testing = new Dictionary();
 
     string aLine = "";
     string aWord = "";
@@ -62,22 +63,22 @@ int main(int argc, char *argv[])
             // insert aWordPair into "testing" using a try/catch block
             try
             {
-                testing->insert(aWordPair);
+                testing->put(aWordPair);
             }
             catch (ElementAlreadyExistsException &e)
             {
                 cout << "ElementAlreadyExistsException: " << e.what() << endl;
-                cout << "The element " << aWordPair.getEnglish() << "and " << aWordPair.getTranslation() << " already exists in the tree." << endl;
+                cout << "The element " << aWordPair.getEnglish() << " and " << aWordPair.getTranslation() << " already exists in the tree." << endl;
             }
         }
         myfile.close();
 
         // If user entered "Display" at the command line ...
-        if ((argc > 1) && (strcmp(argv[1], "Display") == 0))
+        if ((argc > 1) && (strcmp(argv[1], "displayContent") == 0))
         {
             // ... then display the content of the BST.
-            cout << "Displaying the content of the BST:" << endl;
-            testing->traverseInOrder(display);
+            cout << "Displaying the content of the Dictionary:" << endl;
+            testing->displayContent(display);
         }
         else if (argc == 1)
         {
@@ -89,7 +90,7 @@ int main(int argc, char *argv[])
                 // retrieve aWordPair from "testing" using a try/catch block
                 try
                 {
-                    translated = testing->retrieve(aWordPair);
+                    translated = testing->get(aWordPair);
                     cout << translated.getTranslation() << endl;
                 }
                 catch (ElementDoesNotExistException &e)
