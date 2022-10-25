@@ -15,21 +15,20 @@
 // Description: Default constructor
 Dictionary::Dictionary()
 {
-    root = NULL;
-    nodeCount = 0;
+    keyValuePairs = new BST();
 }
 
 // Description: Destructor
 Dictionary::~Dictionary()
 {
-    clear();
+    delete keyValuePairs;
 }
 
 // Description: Returns the number of elements in the dictionary.
 // Time Efficiency: O(1)
 unsigned int Dictionary::getElementCount() const
 {
-    return elementCount;
+    return keyValuePairs->getElementCount();
 }
 
 // Description: Puts "newElement" (association of key-value) into the Dictionary.
@@ -37,16 +36,15 @@ unsigned int Dictionary::getElementCount() const
 //               This is to say: no duplication allowed.
 // Exception: Throws ElementAlreadyExistsException if "newElement" already exists in the Dictionary.
 // Time Efficiency: O(log n)
-void Dictionary::insert(WordPair &newElement)
+void Dictionary::put(WordPair &newElement)
 {
-    if (root == NULL)
+    if (get(newElement) == newElement)
     {
-        root = new BSTNode(newElement);
-        elementCount++;
+        throw ElementAlreadyExistsException("Dictionary::insertElement()");
     }
     else
     {
-        BST::insertR(newElement, root);
+        keyValuePairs->insert(newElement);
     }
 }
 
@@ -57,13 +55,13 @@ void Dictionary::insert(WordPair &newElement)
 // Time Efficiency: O(log n)
 WordPair &Dictionary::get(WordPair &targetElement) const
 {
-    if (root == NULL)
+    if (keyValuePairs->getElementCount() == 0)
     {
         throw EmptyDataCollectionException("Dictionary is empty");
     }
     else
     {
-        return getR(targetElement, root);
+        return keyValuePairs->retrieve(targetElement);
     }
 }
 
@@ -71,12 +69,12 @@ WordPair &Dictionary::get(WordPair &targetElement) const
 // Time Efficiency: O(n)
 void Dictionary::displayContent(void visit(WordPair &)) const
 {
-    if (root == NULL)
+    if (keyValuePairs->getElementCount() == 0)
     {
         throw EmptyDataCollectionException("Dictionary is empty");
     }
     else
     {
-        displayContentR(visit, root);
+        keyValuePairs->traverseInOrder(visit);
     }
 }
