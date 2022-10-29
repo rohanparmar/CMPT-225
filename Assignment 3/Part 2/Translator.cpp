@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
             }
             catch (ElementAlreadyExistsException &e)
             {
-                cout << "ElementAlreadyExistsException: " << e.what() << endl;
+                // cout << "ElementAlreadyExistsException: " << e.what() << endl;
                 cout << "The element " << aWordPair.getEnglish() << " and " << aWordPair.getTranslation() << " already exists in the tree." << endl;
             }
         }
@@ -91,12 +91,13 @@ int main(int argc, char *argv[])
                 try
                 {
                     translated = testing->get(aWordPair);
-                    cout << translated.getTranslation() << endl;
+                    cout << translated.getEnglish() << " : " << translated.getTranslation() << endl;
                 }
                 catch (ElementDoesNotExistException &e)
                 {
-                    cout << "ElementDoesNotExistException: " << e.what() << endl;
-                    cout << "The element " << aWordPair.getEnglish() << " does not exist in the tree." << endl;
+                    // cout << "ElementDoesNotExistException: " << e.what() << endl;
+                    // cout << "The element \"" << aWordPair.getEnglish() << "\" does not exist in the tree." << endl;
+                    cout << "*̸͈̊̐*̵͚̾̐̄*̷̨͌̌Ǹ̴͇͚̍Ǒ̸̢̞̩̈́͋Ţ̴̙̗̑̋ ̸̢̼̰̊F̶̫͙͂O̵̡̬͔͛͌͘Ů̵̡͔̼͊N̴̛̙͆̽D̷̨̮͍̅͠*̴̧̘́̌*̷̨̻̺̑͘*̶͎̝̩̓" << endl;
                 }
                 catch (EmptyDataCollectionException &e)
                 {
