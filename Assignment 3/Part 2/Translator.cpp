@@ -4,8 +4,8 @@
  * Description: Drives the testing of the BST, the BSTNode,
  *              the WordPair and all the exceptions classes.
  *
- * Author: AL
- * Last Modification Date: Oct. 2022
+ * Author: Rohan Parmar
+ * Date of last modification: 30/10/2022
  */
 
 #include <iostream>
@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
             catch (ElementAlreadyExistsException &e)
             {
                 // cout << "ElementAlreadyExistsException: " << e.what() << endl;
-                cout << "The element " << aWordPair.getEnglish() << " and " << aWordPair.getTranslation() << " already exists in the tree." << endl;
+                // cout << "The element " << aWordPair.getEnglish() << " and " << aWordPair.getTranslation() << " already exists in the tree." << endl;
             }
         }
         myfile.close();
@@ -111,6 +111,9 @@ int main(int argc, char *argv[])
     }
     else
         cout << "Unable to open file";
+
+    delete testing;
+    testing = NULL;
 
     return 0;
 }
