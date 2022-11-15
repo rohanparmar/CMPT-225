@@ -1,5 +1,5 @@
 /*  BankSimApp.cpp -> Bank Simulation App class implementation file
- *   Author: Rohan Parmar
+ *   Author: Rohan Parmar, Nyls Poonoosamy
  *   Date: 3/11/2022
  *
  *
@@ -19,11 +19,11 @@ unsigned int totalWaitTime = 0;
 
 void processArrival(Event &nextCustomer, PriorityQueue<Event> &eventPriorityQueue, Queue<Event> &bankLine, bool &tellerAvailable)
 {
-    //get time for next customer
+    // get time for next customer
     int customerTime = nextCustomer.getTime();
-    //print customer time
+    // print customer time
     cout << "Processing an arrival event at time:" << setw(5) << right << customerTime << endl;
-    //dequeue event
+    // dequeue event
     eventPriorityQueue.dequeue();
     if (tellerAvailable && bankLine.isEmpty())
     {
@@ -35,7 +35,7 @@ void processArrival(Event &nextCustomer, PriorityQueue<Event> &eventPriorityQueu
     }
     else
     {
-        //enqueue nextCustomer to bankline queue
+        // enqueue nextCustomer to bankline queue
         bankLine.enqueue(nextCustomer);
     }
 }
@@ -43,11 +43,11 @@ void processArrival(Event &nextCustomer, PriorityQueue<Event> &eventPriorityQueu
 void processDeparture(Event &nextCustomer, PriorityQueue<Event> &eventPriorityQueue, Queue<Event> &bankLine, bool &tellerAvailable)
 {
     int customerTime = nextCustomer.getTime();
-    int currentTime = nextCustomer.getTime();
+    // int currentTime = nextCustomer.getTime();
     cout << "Processing a departure event at time:" << setw(4) << right << customerTime << endl;
     // totalWaitTime += customerTime;
     eventPriorityQueue.dequeue();
-    //cout << "Dequeued an event from eventPriorityQueue" << endl;
+    // cout << "Dequeued an event from eventPriorityQueue" << endl;
 
     int departureTime;
 
@@ -122,18 +122,18 @@ int main()
             if (nextCustomer.getType() == Event::ARRIVAL)
             {
                 arrivalCount++;
-                //cout << "Processing Arrival Event " << arrivalCount << endl;
+                // cout << "Processing Arrival Event " << arrivalCount << endl;
                 processArrival(nextCustomer, eventPriorityQueue, bankLine, tellerAvailable);
-                //cout << "Arrival Event " << arrivalCount << " processed" << endl
-                 //    << endl;
+                // cout << "Arrival Event " << arrivalCount << " processed" << endl
+                //     << endl;
             }
             else
             {
                 departureCount++;
-                //cout << "Processing Departure Event " << departureCount << endl;
+                // cout << "Processing Departure Event " << departureCount << endl;
                 processDeparture(nextCustomer, eventPriorityQueue, bankLine, tellerAvailable);
-                //cout << "Departure Event " << departureCount << " processed" << endl
-                 //    << endl;
+                // cout << "Departure Event " << departureCount << " processed" << endl
+                //     << endl;
             }
         }
         catch (EmptyDataCollectionException &e)

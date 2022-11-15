@@ -5,7 +5,7 @@
  *
  * Class Invariant:  Always a Minimum Binary Heap.
  *
- * Author:
+ * Author: Rohan Parmar, Nyls Poonoosamy
  * Last Modification: Oct. 2022
  *
  */
@@ -21,10 +21,20 @@ using std::endl;
 template <class ElementType>
 BinaryHeap<ElementType>::BinaryHeap()
 {
-    //set elementCount, total capacity and array for heap
+    // set elementCount, total capacity and array for heap
     elementCount = 0;
     capacity = 10;
     elements = new ElementType[capacity];
+}
+
+// Description: Destructor
+template <class ElementType>
+BinaryHeap<ElementType>::~BinaryHeap()
+{
+    // set elementCount to 0; delete elements
+    elementCount = 0;
+    delete[] elements;
+    elements = nullptr;
 }
 
 // Description: Removes (but does not return) the necessary element.
@@ -35,19 +45,19 @@ template <class ElementType>
 void BinaryHeap<ElementType>::remove()
 {
     if (elementCount == 0)
-        // throw EmptyDataCollectionException("remove() called with an empty BinaryHeap.");
-        return;
+        throw EmptyDataCollectionException("remove() called with an empty BinaryHeap.");
+    // return;
     if (elementCount == 1)
     {
-        //decrement elementCount and return
+        // decrement elementCount and return
         elementCount--;
         return;
     }
-    //set first index of array (elements) to the final index of array (elements)
+    // set first index of array (elements) to the final index of array (elements)
     elements[0] = elements[elementCount - 1];
-    //decrement elementCount
+    // decrement elementCount
     elementCount--;
-    //call reHeapDown from the first index
+    // call reHeapDown from the first index
     reHeapDown(0);
 
     return;
@@ -102,7 +112,7 @@ void BinaryHeap<ElementType>::reHeapDown(unsigned int indexOfRoot)
 template <class ElementType>
 unsigned int BinaryHeap<ElementType>::getElementCount() const
 {
-    //return elementCount
+    // return elementCount
     return elementCount;
 }
 
@@ -112,7 +122,7 @@ unsigned int BinaryHeap<ElementType>::getElementCount() const
 template <class ElementType>
 bool BinaryHeap<ElementType>::isEmpty() const
 {
-    //if elementCount equals 0, return true
+    // if elementCount equals 0, return true
     return (elementCount == 0);
 }
 
@@ -122,17 +132,17 @@ bool BinaryHeap<ElementType>::isEmpty() const
 template <class ElementType>
 void BinaryHeap<ElementType>::resize()
 {
-    //make new array with double capacity
+    // make new array with double capacity
     capacity *= 2;
     ElementType *newElements = new ElementType[capacity];
 
-    //copy all elements from old array to new resized array
-    for (int i = 0; i < elementCount; i++)
+    // copy all elements from old array to new resized array
+    for (unsigned int i = 0; i < elementCount; i++)
         newElements[i] = elements[i];
 
-    //call destructor for old array 
+    // call destructor for old array
     delete[] elements;
-    //set elements to new array of double capacity
+    // set elements to new array of double capacity
     elements = newElements;
 }
 
@@ -141,22 +151,22 @@ void BinaryHeap<ElementType>::resize()
 template <class ElementType>
 void BinaryHeap<ElementType>::reHeapUp(unsigned int indexOfLastElement)
 {
-    //if index of lastElement is greater than 0
+    // if index of lastElement is greater than 0
     if (indexOfLastElement > 0)
     {
-        //reassign index of parent to indexofLastElement-1/2
+        // reassign index of parent to indexofLastElement-1/2
         unsigned int indexOfParent = (indexOfLastElement - 1) / 2;
 
-        //if value from index of last element is less than value from index of the parent
+        // if value from index of last element is less than value from index of the parent
         if (elements[indexOfLastElement] <= elements[indexOfParent])
         {
-            //create a temp to store value from index of parent
+            // create a temp to store value from index of parent
             ElementType temp = elements[indexOfParent];
-            //swap value from index of parent to index of last element
+            // swap value from index of parent to index of last element
             elements[indexOfParent] = elements[indexOfLastElement];
             elements[indexOfLastElement] = temp;
 
-            //recursive call of reHeapUp with the parent to go up again
+            // recursive call of reHeapUp with the parent to go up again
             reHeapUp(indexOfParent);
         }
     }
@@ -173,23 +183,23 @@ void BinaryHeap<ElementType>::reHeapUp(unsigned int indexOfLastElement)
 template <class ElementType>
 bool BinaryHeap<ElementType>::insert(ElementType &newElement)
 {
-    //if array is full, resize array by calling resize()
+    // if array is full, resize array by calling resize()
     if (elementCount == capacity)
     {
-        //cout << "resize() called from insert()" << endl;
-        //cout << "Capacity: " << capacity << endl;
+        // cout << "resize() called from insert()" << endl;
+        // cout << "Capacity: " << capacity << endl;
         resize();
-        //cout << "New Capacity: " << capacity << endl;
+        // cout << "New Capacity: " << capacity << endl;
     }
 
-    //set last index of elements to newElement
+    // set last index of elements to newElement
     elements[elementCount] = newElement;
-    //increment elementCount
+    // increment elementCount
     elementCount++;
-    //call reHeapUp function from last index to maintain the binary heap
+    // call reHeapUp function from last index to maintain the binary heap
     reHeapUp(elementCount - 1);
 
-    //insert worked
+    // insert worked
     return true;
 }
 
@@ -202,10 +212,10 @@ template <class ElementType>
 ElementType &BinaryHeap<ElementType>::retrieve() const
 {
     if (elementCount == 0)
-        // throw EmptyDataCollectionException();
-        return elements[0];
-    
-    //return first index value
+        throw EmptyDataCollectionException("Binary Heap is empty");
+    // return elements[0];
+
+    // return first index value
     return elements[0];
 }
 
@@ -215,7 +225,7 @@ ElementType &BinaryHeap<ElementType>::retrieve() const
 template <class ElementType>
 void BinaryHeap<ElementType>::print() const
 {
-    //print elements of heap
+    // print elements of heap
     for (int i = 0; i < elementCount; i++)
         cout << elements[i] << " ";
     cout << endl;

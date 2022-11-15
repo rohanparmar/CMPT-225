@@ -1,11 +1,11 @@
 /*
  * BinaryHeap.h
  *
- * Description: ____________ Binary Heap ADT class.
+ * Description: Minimum Binary Heap ADT class.
  *
- * Class Invariant:  Always a ____________ Binary Heap.
+ * Class Invariant:  Always a Minimum Binary Heap.
  *
- * Author:
+ * Author: Rohan Parmar, Nyls Poonoosamy
  * Last Modification: Oct. 2022
  *
  */
@@ -18,13 +18,16 @@ template <class ElementType>
 class BinaryHeap
 {
 private:
-    ElementType *elements; // Array of elements in the heap
-    int elementCount;      // Number of elements in the heap
-    int capacity;          // Capacity of the array
+    ElementType *elements;     // Array of elements in the heap
+    unsigned int elementCount; // Number of elements in the heap
+    unsigned int capacity;     // Capacity of the array
 
 public:
     // Description: Default constructor
     BinaryHeap();
+
+    // Description: Destructor
+    ~BinaryHeap();
 
     // Description: Removes (but does not return) the necessary element.
     // Precondition: This Binary Heap is not empty.

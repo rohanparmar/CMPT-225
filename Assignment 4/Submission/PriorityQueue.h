@@ -1,7 +1,7 @@
 /*  PriorityQueue.h -> PriorityQueue ADT class definition
  *  This is a priority queue class definition that uses the BinaryHeap class
  *  as a wrapper method to implement the priority queue ADT.
- *   Author: Rohan Parmar
+ *   Author: Rohan Parmar, Nyls Poonoosamy
  *   Date: 3/11/2022
  *
  *

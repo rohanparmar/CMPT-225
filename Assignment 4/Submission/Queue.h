@@ -1,6 +1,6 @@
 /*  Queue.h -> Queue ADT class definition
  *
- *   Author: Rohan Parmar
+ *   Author: Rohan Parmar, Nyls Poonoosamy
  *   Date: 3/11/2022
  *
  *

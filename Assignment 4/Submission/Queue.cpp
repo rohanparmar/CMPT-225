@@ -1,6 +1,6 @@
 /*  Queue.cpp -> Queue ADT class definition
  *
- *   Author: Rohan Parmar
+ *   Author: Rohan Parmar, Nyls Poonoosamy
  *   Date: 3/11/2022
  *
  *
@@ -16,10 +16,10 @@ using namespace std;
 template <class ElementType>
 Queue<ElementType>::Queue()
 {
-    //set back and front of queue to NULL
+    // set back and front of queue to NULL
     front = NULL;
     back = NULL;
-    //set elementCount to 0
+    // set elementCount to 0
     elementCount = 0;
 }
 
@@ -28,7 +28,7 @@ Queue<ElementType>::Queue()
 template <class ElementType>
 Queue<ElementType>::~Queue()
 {
-    //while queue is not empty, call dequeue()
+    // while queue is not empty, call dequeue()
     while (!isEmpty())
         dequeue();
 }
@@ -38,8 +38,8 @@ Queue<ElementType>::~Queue()
 // Time Efficiency: O(1)
 template <class ElementType>
 bool Queue<ElementType>::isEmpty() const
-{   
-    //if elementCount == 0, queue is empty
+{
+    // if elementCount == 0, queue is empty
     return (elementCount == 0);
 }
 
@@ -49,7 +49,7 @@ bool Queue<ElementType>::isEmpty() const
 template <class ElementType>
 int Queue<ElementType>::getElementCount() const
 {
-    //return elementCount
+    // return elementCount
     return elementCount;
 }
 
@@ -60,25 +60,25 @@ int Queue<ElementType>::getElementCount() const
 template <class ElementType>
 bool Queue<ElementType>::enqueue(ElementType &newElement)
 {
-    //make newNode with assigned element
+    // make newNode with assigned element
     Node<ElementType> *newNode = new Node<ElementType>(newElement);
-    //if queue is empty
+    // if queue is empty
     if (isEmpty())
     {
-        //set the first node as the newNode
+        // set the first node as the newNode
         front = newNode;
         back = front;
     }
     else
     {
-        //make newNode the first node in queue
+        // make newNode the first node in queue
         back->next = newNode;
         back = back->next;
     }
-    //increment elementCount
+    // increment elementCount
     elementCount++;
 
-    //enqueue works
+    // enqueue works
     return true;
 }
 
@@ -89,17 +89,16 @@ bool Queue<ElementType>::enqueue(ElementType &newElement)
 // Time Efficiency: O(1)
 template <class ElementType>
 void Queue<ElementType>::dequeue()
-{   
+{
     // if queue is empty
     if (isEmpty())
-        // throw EmptyDataCollectionException();
-        return;
-    
-    //create temp for front of queue
+        throw EmptyDataCollectionException("Queue is empty");
+
+    // create temp for front of queue
     Node<ElementType> *temp = front;
-    //make front go do the next node
+    // make front go do the next node
     front = front->next;
-    //delete temp and decrement elementCount
+    // delete temp and decrement elementCount
     delete temp;
     temp = NULL;
     elementCount--;
@@ -114,10 +113,10 @@ void Queue<ElementType>::dequeue()
 template <class ElementType>
 ElementType &Queue<ElementType>::peek() const
 {
-    // if (isEmpty())
-    //     return NULL;
-    // // throw EmptyDataCollectionException("peek() called with empty queue");
-    //return item at front
+    if (isEmpty())
+        throw EmptyDataCollectionException("Queue is empty");
+    // return NULL;
+    // return item at front
     return front->item;
 }
 
@@ -129,10 +128,10 @@ void Queue<ElementType>::printQueue() const
 {
 
     Node<ElementType> *temp = front;
-    //iterate through queue
+    // iterate through queue
     while (temp != NULL)
     {
-        //print elements of queue
+        // print elements of queue
         cout << temp->item << " ";
         temp = temp->next;
     }

@@ -1,7 +1,7 @@
 /*  PriorityQueue.cpp -> PriorityQueue ADT class definition
  *  This is a priority queue class definition that uses the BinaryHeap class
  *  as a wrapper method to implement the priority queue ADT.
- *   Author: Rohan Parmar
+ *   Author: Rohan Parmar, Nyls Poonoosamy
  *   Date: 3/11/2022
  *
  *
@@ -37,7 +37,7 @@ PriorityQueue<ElementType>::~PriorityQueue()
 template <class ElementType>
 bool PriorityQueue<ElementType>::isEmpty() const
 {
-    //return if heap is empty
+    // return if heap is empty
     return heap.isEmpty();
 }
 
@@ -47,7 +47,7 @@ bool PriorityQueue<ElementType>::isEmpty() const
 template <class ElementType>
 bool PriorityQueue<ElementType>::enqueue(ElementType &newElement)
 {
-    //return a boolean dealing with if insert worked
+    // return a boolean dealing with if insert worked
     bool success = heap.insert(newElement);
     return success;
 }
@@ -60,14 +60,14 @@ bool PriorityQueue<ElementType>::enqueue(ElementType &newElement)
 template <class ElementType>
 void PriorityQueue<ElementType>::dequeue()
 {
-    //if the heap is empty throw EmptyDataCollectionException
+    // if the heap is empty throw EmptyDataCollectionException
     if (heap.isEmpty())
     {
         throw EmptyDataCollectionException("Priority Queue is empty");
     }
     else
     {
-        //remove element from heap
+        // remove element from heap
         heap.remove();
     }
 }
@@ -81,14 +81,14 @@ void PriorityQueue<ElementType>::dequeue()
 template <class ElementType>
 ElementType &PriorityQueue<ElementType>::peek() const
 {
-    //if the heap is empty throw EmptyDataCollectionException
+    // if the heap is empty throw EmptyDataCollectionException
     if (heap.isEmpty())
     {
         throw EmptyDataCollectionException("Priority Queue is empty");
     }
     else
     {
-        //retrieve and return last element from heap
+        // retrieve and return last element from heap
         return heap.retrieve();
     }
 }
@@ -99,7 +99,7 @@ ElementType &PriorityQueue<ElementType>::peek() const
 template <class ElementType>
 void PriorityQueue<ElementType>::print() const
 {
-    //print content from heap
+    // print content from heap
     heap.print();
 }
 
@@ -109,6 +109,6 @@ void PriorityQueue<ElementType>::print() const
 template <class ElementType>
 int PriorityQueue<ElementType>::getElementCount() const
 {
-    //return element count of heap
+    // return element count of heap
     return heap.getElementCount();
 }
