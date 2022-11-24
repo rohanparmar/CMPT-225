@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include "BinaryHeap.h" // Header file
+// #include "Event.h"
 
 using std::cout;
 using std::endl;
@@ -35,7 +36,11 @@ void BinaryHeap<ElementType>::remove()
     if (elementCount == 0)
         // throw EmptyDataCollectionException("remove() called with an empty BinaryHeap.");
         return;
-
+    if (elementCount == 1)
+    {
+        elementCount--;
+        return;
+    }
     elements[0] = elements[elementCount - 1];
     elementCount--;
     reHeapDown(0);
@@ -129,7 +134,7 @@ void BinaryHeap<ElementType>::reHeapUp(unsigned int indexOfLastElement)
     {
         unsigned int indexOfParent = (indexOfLastElement - 1) / 2;
 
-        if (elements[indexOfParent] > elements[indexOfLastElement])
+        if (elements[indexOfLastElement] <= elements[indexOfParent])
         {
             ElementType temp = elements[indexOfParent];
             elements[indexOfParent] = elements[indexOfLastElement];

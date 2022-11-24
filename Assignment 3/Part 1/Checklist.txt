@@ -85,4 +85,5 @@ So, how can you guarantee that each BST insertion and retrieval will be done in 
 how can you guarantee that your BST will not degenerate into a linear data structure as you insert elements into it, 
 hence producing the worst case scenario of BST insertion: a time efficiency of O(n)? One way to avoid the BST's worst case 
 scenario is to implement an AVL tree instead of a BST. But since we are not asked to do this, there must be another way? 
+
 Hint: Remember what was said in class about the impact the data organization has on the structure of a binary search tree.

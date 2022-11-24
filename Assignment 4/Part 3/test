@@ -1,0 +1,19 @@
+# A string is to be constructed using only the characters 'A' and 'B'.
+# Given four integers, countA, countB, maxA and maxB, the constructed string
+# is said to be optimal if:
+# 1) It contains at most countA 'A' characters and exactly countB 'B' characters.
+# 2) Each substring of only 'A' characters has length at most maxA.
+# 3) Each substring of only 'B' characters has length at most maxB.
+# Example:
+# countA = 3, countB = 5, maxA = 1, maxB = 1
+# The maximal optimal string is "BABABAB" whose length is 7.
+# Thus, the function should return 7.
+
+def getOptimalStringLength(countA, countB, maxA, maxB):
+    # Your code here
+    for i in range(countA):
+        for j in range(countB):
+            if i*maxA + j*maxB <= countA + countB:
+                return i*maxA + j*maxB
+            else:
+                return 0

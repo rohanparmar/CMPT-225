@@ -7,8 +7,8 @@
  *
  * Class invariant: It is always a BST.
  *
- * Author: Inspired from our textbook
- * Date of last modification: Oct. 2022
+ * Author: Rohan Parmar
+ * Date of last modification: 30/10/2022
  */
 
 #include "BST.h"
