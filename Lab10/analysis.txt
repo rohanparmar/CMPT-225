@@ -1,0 +1,17 @@
+HashModulo:
+
+There are 41 empty cells.
+32 elements inserted without collisions.
+There were 32 collisions.
+
+HashFoldShift:
+
+There are 37 empty cells.
+39 elements inserted without collisions.
+There were 39 collisions.
+
+HashFoldBoundary:
+
+There are 37 empty cells.
+35 elements inserted without collisions.
+There were 35 collisions.
